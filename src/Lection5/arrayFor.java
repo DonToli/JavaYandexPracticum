@@ -18,13 +18,13 @@ public class arrayFor {
         // Выведите с помощью цикла все траты за неделю в виде: "День ... . Потрачено рублей: ..."
         //for (int day = 0; day <= 6; day++) {
         int day=0;
-        for (int i = 0; i < expenses[i]; i++) {
+        for (int i = 0; i < 7; i++) {
             day+=1;
             System.out.println("День " + day + ". Потрачено рублей: " + expenses[i]);
             }
         int sum = 0;
         // Посчитайте и выведите сумму трат за неделю — используйте цикл и здесь
-        for(int i = sum; i < expenses[i]; i++ )
+        for(int i = sum; i < 7; i++ )
             sum = sum + expenses[i];
 
         System.out.println("Траты в рублях за неделю: " + sum);
