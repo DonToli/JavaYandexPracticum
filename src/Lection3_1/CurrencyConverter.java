@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class CurrencyConverter {
     public static void main(String[] args) {
-        double rateUSD = 78;
+        double[] expenses = new double[7];
+
+        double rateUSD = 78.5;
         double rateEUR = 85;
         double rateJPY = 0.74;
 
@@ -17,35 +19,36 @@ public class CurrencyConverter {
         int daysBeforeSalary = scanner.nextInt();
 
         while (true) {
-            System.out.println("Что вы хотите сделать? ");
+            System.out.println("Что вы хотите сделать?");
             System.out.println("1 - Конвертировать валюту");
             System.out.println("2 - Получить совет");
+            System.out.println("3 - Ввести трату");
+            System.out.println("4 - Показать траты за неделю");
             System.out.println("0 - Выход");
 
             int command = scanner.nextInt();
 
             if (command == 1) {
-                System.out.println("В какую валюту хотите конвертировать? Доступные варианты: 1 - USD, 2 - EUR или 3 - JPY.");
+                System.out.println("Ваши сбережения: " + moneyBeforeSalary + " RUB");
+                System.out.println("В какую валюту хотите конвертировать? Доступные варианты: 1 - USD, 2 - EUR, 3 - JPY.");
                 int currency = scanner.nextInt();
-
-                if (currency == 1){
+                if (currency == 1) {
                     System.out.println("Ваши сбережения в долларах: " + moneyBeforeSalary / rateUSD);
-                } else if (currency == 2){
+                } else if (currency == 2) {
                     System.out.println("Ваши сбережения в евро: " + moneyBeforeSalary / rateEUR);
-                } else if (currency == 3){
-                    System.out.println("Ваши сбережения в йенах: " + moneyBeforeSalary / rateJPY);
-                } else{
-                    System.out.println("Валюта не поддерживается.");
+                } else if (currency == 3) {
+                    System.out.println("Ваши сбережения в иенах: " + moneyBeforeSalary / rateJPY);
+                } else {
+                    System.out.println("Неизвестная валюта");
                 }
-
             } else if (command == 2) {
                 if (moneyBeforeSalary < 3000) {
-                    System.out.println("Сегодня лучше поесть дома. Экономьте и вы дотянете до зарплаты!");
-                } else if (moneyBeforeSalary < 10000) {
+                    System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
+                } else if (moneyBeforeSalary < 10000){
                     if (daysBeforeSalary < 10) {
                         System.out.println("Окей, пора в Макдак!");
                     } else {
-                        System.out.println("Сегодня лучше поесть дома. Экономьте и вы дотянете до зарплаты!");
+                        System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
                     }
                 } else if (moneyBeforeSalary < 30000) {
                     if (daysBeforeSalary < 10) {
@@ -60,12 +63,28 @@ public class CurrencyConverter {
                         System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
                     }
                 }
-            } else if (command == 0){
-                System.out.println("Выход");
-                break;
-            } else{
-                System.out.println("Извините , такой команды пока нет.");
-            }
+            } else if (command == 3) {
+                System.out.println("За какой день вы хотите ввести трату: 1-ПН, 2-ВТ, 3-СР, 4-ЧТ, 5-ПТ, 6-СБ, 7-ВС?");
+                int day = scanner.nextInt();
+                System.out.println("Введите размер траты:");
+                double expense = scanner.nextDouble();
+                moneyBeforeSalary = moneyBeforeSalary - expense;
+                expenses[day - 1] = expenses[day - 1] + expense;
+                System.out.println("Значение сохранено! Ваш текущий баланс в рублях: " + moneyBeforeSalary);
+                if (moneyBeforeSalary < 1000) {
+                    System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
+                }
+            } else if(command == 4){ // Добавьте ветвление для обработки новой команды
+              for (int day = 0; day< 7; day++)// Используйте цикл for, чтобы получить все траты — элементы массива expenses
+
+                  System.out.println("День " + day + ". Потрачено " + expenses[day] + " рублей.");// Напечатайте в цикле строку: "День _. Потрачено _ рублей.".
+
+        } else if (command == 0) {
+            System.out.println("Выход");
+            break;
+        } else {
+            System.out.println("Извините, такой команды пока нет.");
         }
     }
+}
 }
