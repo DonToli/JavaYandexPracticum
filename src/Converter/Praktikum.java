@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Praktikum {
     public static void main(String[] args) {
-        // Должно стать полем нового класса
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Сколько денег у вас осталось до зарплаты?");
@@ -12,10 +11,9 @@ public class Praktikum {
         System.out.println("Сколько дней до зарплаты?");
         int daysBeforeSalary = scanner.nextInt();
 
-        Converter converter = new Converter(78.5,88.7,0.75);
+        Converter converter = new Converter(78.5, 88.7, 0.75);
         DinnerAdvisor dinnerAdvisor = new DinnerAdvisor();
         ExpensesManager expensesManager = new ExpensesManager();
-        // Здесь создайте объект класса ExpensesManager
 
         while (true) {
             printMenu();
@@ -33,8 +31,8 @@ public class Praktikum {
                 int day = scanner.nextInt();
                 System.out.println("Введите размер траты:");
                 double expense = scanner.nextDouble();
-                moneyBeforeSalary = moneyBeforeSalary - expense;
-                expensesManager.saveExpense(moneyBeforeSalary,expense,day);
+
+                expensesManager.saveExpense(moneyBeforeSalary, expense, day);
 
             } else if (command == 4) {
                 expensesManager.printAllExpenses();
@@ -49,6 +47,7 @@ public class Praktikum {
             }
         }
     }
+
     public static void printMenu() {
         System.out.println("Что вы хотите сделать? ");
         System.out.println("1 - Конвертировать валюту");

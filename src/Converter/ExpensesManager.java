@@ -13,6 +13,7 @@ public class ExpensesManager {
             if (moneyBeforeSalary < 1000) {
                 System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
             }
+            moneyBeforeSalary = moneyBeforeSalary - expense;
             return moneyBeforeSalary;
         }
 
